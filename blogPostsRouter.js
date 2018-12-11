@@ -33,7 +33,7 @@ router.put("/:id", (req, res) => {
     const requiredFields = ["id", "title", "content", "author", "publishDate"];
     for(let i = 0; i < requiredFields.length; i++){
         const field = requiredFields[i];
-        if(!(fields in req.body)){
+        if(!(field in req.body)){
             const message = `Missing \`${field}\` in request body`;
             console.error(message);
             return res.status(400).send(message);
@@ -59,7 +59,7 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
     BlogPosts.delete(req.params.id);
     console.log(`Deleted blog post with id \`${req.params.ID}\``);
-    req.status(204).end();
+    res.status(204).end();
 });
 
 module.exports = router;
